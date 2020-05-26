@@ -7,8 +7,8 @@ WEB_ROOT=/usr/share/nginx/html
 MOUNT_CHECK=$(mount | grep ${WEB_ROOT})
 
 if [ -z "${MOUNT_CHECK}" ] ; then
-  echo "The directory ${WEB_ROOT} is not mounted."
-  echo "Over-writing the default index.html file with some useful information."
+  # echo "The directory ${WEB_ROOT} is not mounted."
+  # echo "Over-writing the default index.html file with some useful information."
 
   HOSTNAME=$(hostname)
   CONTAINER_IP=$(ip addr show eth0 | grep -w inet| awk '{print $2}')
