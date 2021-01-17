@@ -30,12 +30,14 @@ RUN set -xe \
 
 RUN echo "****** Install ansible and python dependencies ******" \
     && pip3 install --upgrade pip \
-	&& pip3 install ansible==${ANSIBLE_VERSION} boto3 \
+	&& pip3 install ansible==${ANSIBLE_VERSION} boto3 crypto \
     \
     && echo "****** Remove unused system librabies ******" \
 	&& rm -rf /var/cache/apk/* 
 
 RUN pip install ansible-tower-cli  
+
+RUN pip3 install pyOpenSSL awscli boto
 
 RUN set -xe \
     && mkdir -p /etc/ansible \
