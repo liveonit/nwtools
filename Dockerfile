@@ -26,12 +26,12 @@ RUN set -xe \
     && apk add --no-cache --progress python3 openssl \
 		ca-certificates git openssh sshpass \
 	&& apk --update add \
-		python3-dev py3-pip libffi-dev openssl-dev build-base
+		python3-dev py3-pip libffi-dev openssl-dev build-base gcc musl-dev cargo
 
 RUN echo "****** Install ansible and python dependencies ******" \
-    && pip3 install --upgrade pip \
-	&& pip3 install ansible==${ANSIBLE_VERSION} boto3 crypto \
-    \
+    && pip3 install --upgrade pip
+
+RUN pip3 install ansible==${ANSIBLE_VERSION} boto3 crypto \
     && echo "****** Remove unused system librabies ******" \
 	&& rm -rf /var/cache/apk/* 
 
@@ -43,6 +43,10 @@ RUN set -xe \
     && mkdir -p /etc/ansible \
     && echo -e "[local]\nlocalhost ansible_connection=local" > \
         /etc/ansible/hosts
+
+RUN curl https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.1.25/cloud-nuke_darwin_amd64 --output cloud-nuke_darwin_amd64\
+    && mv cloud-nuke_darwin_amd64 /usr/local/bin/cloud-nuke\
+    && chmod u+x /usr/local/bin/cloud-nuke
 
 
 EXPOSE 80 443
