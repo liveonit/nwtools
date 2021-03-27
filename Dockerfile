@@ -44,10 +44,8 @@ RUN set -xe \
     && echo -e "[local]\nlocalhost ansible_connection=local" > \
         /etc/ansible/hosts
 
-RUN curl -L https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0-rc.4/aws-nuke-v2.15.0.rc.4-linux-amd64.tar.gz --output cloud-nuke_darwin_amd64.tar.gz\
-    && tar -xzf cloud-nuke_darwin_amd64.tar.gz && rm cloud-nuke_darwin_amd64.tar.gz\
-    && mv aws-nuke-v2.15.0.rc.4-linux-amd64 /usr/local/bin/cloud-nuke && chmod a+x /usr/local/bin/cloud-nuke
-
+RUN curl -L https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.1.25/cloud-nuke_linux_amd64 --output cloud-nuke\
+    && mv cloud-nuke /usr/local/bin/cloud-nuke && chmod a+x /usr/local/bin/cloud-nuke
 
 EXPOSE 80 443
 

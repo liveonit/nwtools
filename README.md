@@ -24,6 +24,11 @@ This is a multitool for container/network testing and troubleshooting. It was or
 * git
 * ansible
 * ansible-tower-cli
+* awscli
+* boto
+* boto3
+* cloud-nuke
+
 
 **Note:** The SSL certificates are generated for 'localhost', are self signed, and placed in `/certs/` directory. During your testing, ignore the certificate warning/error. While using curl, you can use `-k` to ignore SSL certificate warnings/errors.
 
