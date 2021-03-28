@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.13.3
 
 RUN     apk update \
     &&  apk add apache2-utils bash bind-tools busybox-extras curl ethtool git \
