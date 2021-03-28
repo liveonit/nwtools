@@ -48,34 +48,34 @@ If these environment variables are absent/not provided, the container will liste
 ### Docker
 
 ```bash
-docker run --rm -it ibarretorey/nwtools /bin/bash
+docker run --rm -it <docker_owner>/nwtools /bin/bash
 ```
 
 ### Docker-compose
 
 ```bash
-docker run --name multitool-net  -d ibarretorey/nwtools
-kubectl exec -it multitool-net  bash # to connect with container
+docker run --name multitool-net  -d <docker_owner>/nwtools
+docker exec -it multitool-net bash # to connect with container
 ```
 
 ### K8s
 
 ```bash
-kubectl run multitool --image=ibarretorey/nwtools --replicas=1
-docker exec -it multitool-net bash # to connect with container
+kubectl run multitool --image=<docker_owner>/nwtools --replicas=1
+kubectl exec -it multitool-net  bash # to connect with container
 ```
 
 ## Build and Push (to dockerhub) instructions
 
 ```bash
 docker build -t local/nwtools .
-docker tag local/nwtools ibarretorey/nwtools
+docker tag local/nwtools <docker_owner>/nwtools
 docker login
-docker push ibarretorey/nwtools
+docker push <docker_owner>/nwtools
 ```
 
 ## Pull (from dockerhub)
 
 ```bash
-docker pull ibarretorey/nwtools
+docker pull <docker_owner>/nwtools
 ```
