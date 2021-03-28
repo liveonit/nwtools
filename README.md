@@ -1,4 +1,4 @@
-![Latest build status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?workflow=CI)
+[![CI workflow](https://img.shields.io/github/workflow/status/ibarretorey/netools/ci?label=ci&logo=github&style=flat-square)](https://github.com/ibarretorey/nwtools/actions?workflow=ci)
 
 # nwtools
 
