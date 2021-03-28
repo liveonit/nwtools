@@ -18,7 +18,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-  build:
+  build_test_push:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
@@ -50,8 +50,8 @@ jobs:
         run: make build
       - 
         name: Test
-        run: make test
+        run: make run_tests
       - 
         name: push
-        run: echo "push"
+        run: make push
 
