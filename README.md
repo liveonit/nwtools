@@ -1,4 +1,4 @@
-[![CI workflow](https://img.shields.io/github/workflow/status/ibarretorey/netools/ci?label=ci&logo=github&style=flat-square)](https://github.com/ibarretorey/nwtools/actions?workflow=ci)
+[![CI workflow](https://img.shields.io/github/workflow/status/ibarretorey/nwtools/ci?label=ci&logo=github&style=flat-square)](https://github.com/ibarretorey/nwtools/actions?workflow=ci&branch=master)
 
 # nwtools
 
