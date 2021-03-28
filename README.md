@@ -1,5 +1,4 @@
-[![CI workflow](https://img.shields.io/github/workflow/status/ibarretorey/nwtools/ci?label=ci&logo=github&style=flat-square)](https://github.com/ibarretorey/nwtools/actions)
-
+<!-- TODO: Add tags of build states, implement github release control and separate test of push workflows -->
 # nwtools
 
 This is a multitool for container/network testing and troubleshooting. It was originally built with Fedora, but is now based on Alpine Linux. The container image contains lots of tools, as well as nginx web server, which listens on port 80 and 443 by default. The web server helps to run this container-image in a straight-forward way, so you can simply `exec` into the container and use various tools.
