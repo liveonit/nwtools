@@ -2,6 +2,9 @@ name: CI
 on:
   pull_request:
     branches: [ master ]
+  push:
+    branches:
+      - master
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -53,5 +56,6 @@ jobs:
         run: make run_tests
       - 
         name: push
+        if: ${{ github.event_name != 'pull_request' }}
         run: make push
 
