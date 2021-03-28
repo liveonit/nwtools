@@ -42,6 +42,9 @@ jobs:
       -
         name: Build
         run: make build
+      -
+        name: Test
+        run: make run_tests
       - 
         name: Test local images
         run: docker image ls
