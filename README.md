@@ -1,4 +1,4 @@
-![Latest build status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=dev)
+![Latest build status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?workflow=CI)
 
 # nwtools
 
