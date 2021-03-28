@@ -1,3 +1,4 @@
+<!-- TODO: Add tags of build states, implement github release control and separate test of push workflows -->
 # nwtools
 
 This is a multitool for container/network testing and troubleshooting. It was originally built with Fedora, but is now based on Alpine Linux. The container image contains lots of tools, as well as nginx web server, which listens on port 80 and 443 by default. The web server helps to run this container-image in a straight-forward way, so you can simply `exec` into the container and use various tools.
@@ -47,34 +48,34 @@ If these environment variables are absent/not provided, the container will liste
 ### Docker
 
 ```bash
-docker run --rm -it ibarretorey/nwtools /bin/bash
+docker run --rm -it <docker_owner>/nwtools /bin/bash
 ```
 
 ### Docker-compose
 
 ```bash
-docker run --name multitool-net  -d ibarretorey/nwtools
-kubectl exec -it multitool-net  bash # to connect with container
+docker run --name multitool-net  -d <docker_owner>/nwtools
+docker exec -it multitool-net bash # to connect with container
 ```
 
 ### K8s
 
 ```bash
-kubectl run multitool --image=ibarretorey/nwtools --replicas=1
-docker exec -it multitool-net bash # to connect with container
+kubectl run multitool --image=<docker_owner>/nwtools --replicas=1
+kubectl exec -it multitool-net  bash # to connect with container
 ```
 
 ## Build and Push (to dockerhub) instructions
 
 ```bash
 docker build -t local/nwtools .
-docker tag local/nwtools ibarretorey/nwtools
+docker tag local/nwtools <docker_owner>/nwtools
 docker login
-docker push ibarretorey/nwtools
+docker push <docker_owner>/nwtools
 ```
 
 ## Pull (from dockerhub)
 
 ```bash
-docker pull ibarretorey/nwtools
+docker pull <docker_owner>/nwtools
 ```
