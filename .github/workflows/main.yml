@@ -16,37 +16,28 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      -
-        name: Set up QEMU
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-      -
-        name: Set up Docker Buildx
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      - 
-        name: Cache Docker layers
+      - name: Cache Docker layers
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v1 
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build
+      - name: Build
         run: make build
-      - 
-        name: Test
+      - name: Test
         run: make run_tests
-      - 
-        name: push
+      - name: push
         if: ${{ github.event_name != 'pull_request' }}
         run: make push
-
