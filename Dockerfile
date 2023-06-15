@@ -1,4 +1,4 @@
-FROM alpine:3.13.3
+FROM python:3.9-alpine
 
 RUN apk update \
     &&  apk add apache2-utils bash bind-tools busybox-extras curl ethtool git \
@@ -17,22 +17,20 @@ COPY index.html /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx-connectors.conf /etc/nginx/conf.d/default.conf
 
-ENV ANSIBLE_VERSION=2.13
+ENV ANSIBLE_VERSION=8.0.0
 
 
 RUN set -xe \
     && echo "****** Install system dependencies ******" \
-    && apk add --no-cache --progress python3 openssl \
+    && apk add --no-cache --progress openssl \
 		ca-certificates git openssh sshpass \
-	&& apk --update add \
-		python3-dev py3-pip libffi-dev openssl-dev build-base gcc musl-dev cargo
+	  && apk --update add \
+		libffi-dev openssl-dev build-base gcc musl-dev cargo
 
 RUN echo "****** Install ansible and python dependencies ******" \
     && pip3 install --upgrade pip
 
-RUN pip3 install ansible==${ANSIBLE_VERSION} boto3 crypto \
-    && echo "****** Remove unused system librabies ******" \
-	&& rm -rf /var/cache/apk/*
+RUN pip3 install ansible==${ANSIBLE_VERSION} boto3 crypto
 
 RUN pip install ansible-tower-cli
 
@@ -45,6 +43,9 @@ RUN set -xe \
 
 RUN curl -L https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.1.25/cloud-nuke_linux_amd64 --output cloud-nuke\
     && mv cloud-nuke /usr/local/bin/cloud-nuke && chmod a+x /usr/local/bin/cloud-nuke
+
+RUN echo "****** System cleanup ******" \
+	&& apk cache clean
 
 EXPOSE 80 443
 
