@@ -1,23 +1,23 @@
 FROM alpine:3.13.3
 
-RUN     apk update \
+RUN apk update \
     &&  apk add apache2-utils bash bind-tools busybox-extras curl ethtool git \
-                iperf3 iproute2 iputils jq lftp mtr mysql-client \
-                netcat-openbsd net-tools nginx nmap openssh-client openssl \
-	            perl-net-telnet postgresql-client procps rsync socat tcpdump tshark wget \
+        iperf3 iproute2 iputils jq lftp mtr mysql-client \
+        netcat-openbsd net-tools nginx nmap openssh-client openssl \
+	      perl-net-telnet postgresql-client procps rsync socat tcpdump tshark wget \
     &&  mkdir /certs \
     &&  chmod 700 /certs
 
 RUN openssl req \
-        -x509 -newkey rsa:2048 -nodes -days 3650 \
-        -keyout /certs/server.key -out /certs/server.crt -subj '/CN=localhost'
+    -x509 -newkey rsa:2048 -nodes -days 3650 \
+    -keyout /certs/server.key -out /certs/server.crt -subj '/CN=localhost'
 
 COPY index.html /usr/share/nginx/html/
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx-connectors.conf /etc/nginx/conf.d/default.conf
 
-ENV ANSIBLE_VERSION=2.15
+ENV ANSIBLE_VERSION=2.13
 
 
 RUN set -xe \
