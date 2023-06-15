@@ -17,9 +17,8 @@ COPY index.html /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx-connectors.conf /etc/nginx/conf.d/default.conf
 
+ENV ANSIBLE_VERSION=2.15
 
-
-ENV ANSIBLE_VERSION=2.9.2
 
 RUN set -xe \
     && echo "****** Install system dependencies ******" \
@@ -33,9 +32,9 @@ RUN echo "****** Install ansible and python dependencies ******" \
 
 RUN pip3 install ansible==${ANSIBLE_VERSION} boto3 crypto \
     && echo "****** Remove unused system librabies ******" \
-	&& rm -rf /var/cache/apk/* 
+	&& rm -rf /var/cache/apk/*
 
-RUN pip install ansible-tower-cli  
+RUN pip install ansible-tower-cli
 
 RUN pip3 install pyOpenSSL awscli boto
 
